@@ -8,13 +8,14 @@ public class TarificationTest {
     @Test
     void testCalculPrixParSection() {
         double prixBaseOffre = 100.0;
-        double coefficientEconomique = 1.0;
-        double coefficientAffaires = 0.75;
+        double coefficientEconomique = 0.75;
+        double coefficientAffaires = 1.25;
 
         double prixClasseEconomique = prixBaseOffre * coefficientEconomique;
         double prixClasseAffaires = prixBaseOffre * coefficientAffaires;
 
-        assertEquals(100.0, prixClasseEconomique);
-        assertEquals(75.0, prixClasseAffaires);
+        assertEquals(75.0, prixClasseEconomique);
+        assertEquals(125.0, prixClasseAffaires);
     }
 }
+
