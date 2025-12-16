@@ -44,7 +44,7 @@ public class OffresService {
         newOffre.setOperateur(optionalOperateur.get());
         newOffre.setDepart(depart);
         newOffre.setPrixBase(prixBase);
-        return newOffre;
+        return offreRepository.save(newOffre);
     }
 
     public Offre getOffreById(int id) {
@@ -52,21 +52,16 @@ public class OffresService {
     }
 
     public Offre updateOffre(int id, int trajetId, int operateurId, String depart, double prixBase) {
-        Optional<Offre> optionalOffre = offreRepository.findById(id);
-        Optional<Vol> optionalVol = volRepository.findById(trajetId);
-        Optional<Operateur> optionalOperateur = operateurRepository.findById(operateurId);
+        Offre offre = offreRepository.findById(id).orElseThrow();
+        Vol vol = volRepository.findById(trajetId).orElseThrow();
+        Operateur operateur = operateurRepository.findById(operateurId).orElseThrow();
 
-        if (optionalOffre.isEmpty() || optionalVol.isEmpty() || optionalOperateur.isEmpty()) {
-            return null;
-        }
-
-        Offre offre = optionalOffre.get();
-        offre.setTrajet(optionalVol.get());
-        offre.setOperateur(optionalOperateur.get());
+        offre.setTrajet(vol);
+        offre.setOperateur(operateur);
         offre.setDepart(depart);
         offre.setPrixBase(prixBase);
 
-        return offre;
+        return offreRepository.save(offre);
     }
 
     public boolean deleteOffre(int id) {

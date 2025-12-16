@@ -23,7 +23,7 @@ public class OffresAdminController {
         return offresService.getAllOffres();
     }
 
-    @PostMapping("/create")
+    @GetMapping("/create")
     public ResponseEntity<Offre> createOffre(
             @RequestParam int id,
             @RequestParam int trajetId,
@@ -36,7 +36,7 @@ public class OffresAdminController {
         );
     }
 
-    @PutMapping("/update/{id}")
+    @GetMapping("/update/{id}")
     public ResponseEntity<Offre> updateOffre(
             @PathVariable int id,
             @RequestParam int trajetId,
@@ -49,7 +49,7 @@ public class OffresAdminController {
         );
     }
 
-    @DeleteMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     public Object deleteOffre(@PathVariable int id) {
         return offresService.deleteOffre(id);
     }
